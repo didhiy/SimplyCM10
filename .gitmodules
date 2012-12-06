@@ -1,3 +1,0 @@
-[submodule "kernel"]
-	path = kernel
-	url = git://github.com/zman0900/android_kernel_samsung_epicmtd.git

@@ -1,6 +1,9 @@
 *~
 *.zip
-zip/zImage
-zip/system
-kexec-zip/zImage
-kexec-zip/system
+zip-er/boot.img
+zip-er/system
+zip-nr/boot.img
+zip-nr/system
+kxc-zip/zImage
+create_boot.img/zImage
+create_boot.img/boot.img
