@@ -18,6 +18,7 @@
 /dev/video21              0660   system     graphics
 /dev/video22              0660   system     graphics
 
+
 #LSI
 /dev/pvrsrvkm             0666   system     system
 /dev/video0               0660   system     camera
