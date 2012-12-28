@@ -9,6 +9,7 @@ PRJROOT=$PWD
 CUSTOMVERSION=nitest-`date +%m%d`
 KERNEL_BUILD_DIR=/media/DATA2/NitestGit/android_kernel_samsung_epicmtd
 KEXEC_BUILD_DIR=$PRJROOT/kxc-zip
+DATE_START=$(date +"%s")
 
 echo "Building kernel"
 		pushd $KERNEL_BUILD_DIR
@@ -23,4 +24,7 @@ echo "Making kexec zip"
 		cp $KERNEL_BUILD_DIR/arch/arm/boot/zImage $KEXEC_BUILD_DIR
 		rm $PRJROOT/$CUSTOMVERSION-kxc.zip
 		zip -r $PRJROOT/$CUSTOMVERSION-kxc.zip ./*
-echo "Finish"
+DATE_END=$(date +"%s")
+echo
+DIFF=$(($DATE_END - $DATE_START))
+echo "Build completed in $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) seconds."
