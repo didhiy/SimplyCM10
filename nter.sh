@@ -10,6 +10,7 @@ CUSTOMVERSION=nitest-`date +%m%d`
 KERNEL_BUILD_DIR=/media/DATA2/NitestGit/android_kernel_samsung_epicmtd
 BOOTIMG_BUILD_DIR=$PRJROOT/create_boot.img
 ZIP_BUILD_DIR=$PRJROOT/zip-er
+DATE_START=$(date +"%s")
 
 echo "Building kernel"
 		pushd $KERNEL_BUILD_DIR
@@ -31,4 +32,7 @@ echo "Making zip"
 		find $KERNEL_BUILD_DIR -name '*.ko' -exec cp '{}' system/lib/modules/ \;
 		rm $PRJROOT/$CUSTOMVERSION.zip
 		zip -r $PRJROOT/$CUSTOMVERSION.zip ./*
-echo "Finish"
+DATE_END=$(date +"%s")
+echo
+DIFF=$(($DATE_END - $DATE_START))
+echo "Build completed in $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) seconds."
