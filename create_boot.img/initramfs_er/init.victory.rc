@@ -24,10 +24,6 @@ on post-fs
   # Load wimax modules
   insmod /system/lib/modules/cmc7xx_sdio.ko
 
-  # Permissions for MTP device node
-  chmod 0660 /dev/usb_mtp_gadget
-  chown system system /dev/usb_mtp_gadget
-
   # Device control nodes for WiMAX
   exec /system/xbin/busybox mknod -m 0660 /dev/swmxctl c 234 0
   exec /system/xbin/busybox mknod -m 0660 /dev/uwibro c 233 0
@@ -106,46 +102,9 @@ on boot
     chown radio radio /sys/devices/virtual/sec/uart_switch/UART_SEL1/value
     chmod 660 /sys/devices/virtual/sec/uart_switch/UART_SEL1/value
 
-# change permission for usb_switch
-    chown radio radio /sys/bus/i2c/drivers/fsa9480/1-0025/switch
-    chmod 660 /sys/bus/i2c/drivers/fsa9480/1-0025/switch
-
-  # Change ownerships for USB
-  chown radio system /sys/class/sec/switch/usb_sel
-  chown radio system /sys/class/sec/switch/uart_sel
-  chown radio system /sys/class/sec/switch/usb_state
-  chown radio system /sys/class/sec/switch/disable_vbus
-  chown radio system /sys/devices/platform/android_usb/tethering
-  chown radio system /sys/devices/platform/android_usb/KiesStatus
-  chown radio system /sys/devices/platform/android_usb/UsbMenuSel
-  chown radio system /sys/devices/platform/android_usb/AskOnStatus
-  chown radio system /sys/devices/platform/android_usb/AskOnMenuSel
-
   # Change ownerships for fuel gauge
   chown radio system /sys/class/sec/fg_atcom_test/set_fuel_gauage_read
   chown radio system /sys/class/sec/fg_atcom_test/set_fuel_gauage_reset
-
-  # Change ownerships for battery
-  chown radio system /sys/class/power_supply/battery/batt_vol
-  chown radio system /sys/class/power_supply/battery/batt_vol_adc
-  chown radio system /sys/class/power_supply/battery/batt_temp
-  chown radio system /sys/class/power_supply/battery/batt_temp_adc
-  chown radio system /sys/class/power_supply/battery/charging_source
-  chown radio system /sys/class/power_supply/battery/fg_soc
-  chown radio system /sys/class/power_supply/battery/reset_soc
-  chown radio system /sys/class/power_supply/battery/charging_mode_booting
-  chown radio system /sys/class/power_supply/battery/batt_temp_check
-  chown radio system /sys/class/power_supply/battery/batt_full_check
-  chown radio system /sys/class/power_supply/battery/batt_type
-  chown radio system /sys/class/power_supply/battery/batt_use
-  chown radio radio /sys/class/power_supply/battery/call
-  chown radio radio /sys/class/power_supply/battery/video
-  chown radio radio /sys/class/power_supply/battery/music
-  chown radio radio /sys/class/power_supply/battery/browser
-  chown radio radio /sys/class/power_supply/battery/hotspot
-  chown radio radio /sys/class/power_supply/battery/camera
-  chown radio radio /sys/class/power_supply/battery/data_call
-  chown radio radio /sys/class/power_supply/battery/wimax
 
   # For jack control
   chown radio system /sys/class/jack/jack_selector/select_jack
@@ -207,30 +166,12 @@ on boot
   chown system system /sys/devices/platform/s3c-keypad/brightness
   chown system system /sys/devices/platform/s3c-keypad/key_pressed
 
-  # For Bluetooth
-  chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
-  chown bluetooth bluetooth /proc/bluetooth/sleep/proto
-  chown system system /sys/module/sco/parameters/disable_esco
-  chmod 0660 /sys/module/bluetooth_power/parameters/power
-  chmod 0660 /proc/bluetooth/sleep/proto
-
-  chown bluetooth net_bt_stack /dev/uinput
-  chmod 0660 /dev/uinput
-
-  chown bluetooth net_bt_stack /dev/s3c2410_serial0
-  chmod 0660 /dev/s3c2410_serial0
-  chmod 0770 /sys/class/rfkill/rfkill0/state
-  chmod 0770 /sys/class/rfkill/rfkill1/state
-  chmod 0770 /sys/class/rfkill/rfkill2/state
-  chmod 0770 /sys/class/rfkill/rfkill3/state
-  chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/state
-  chown bluetooth net_bt_stack /sys/class/rfkill/rfkill1/state
-  chown bluetooth net_bt_stack /sys/class/rfkill/rfkill2/state
-  chown bluetooth net_bt_stack /sys/class/rfkill/rfkill3/state
-  chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/type
-  chown bluetooth net_bt_stack /sys/class/rfkill/rfkill1/type
-  chown bluetooth net_bt_stack /sys/class/rfkill/rfkill2/type
-  chown bluetooth net_bt_stack /sys/class/rfkill/rfkill3/type
+# permissions for bluetooth.
+    chown bluetooth net_bt_stack /dev/s3c2410_serial0
+    chmod 0600 /dev/s3c2410_serial0
+    chmod 0660 /sys/class/rfkill/rfkill0/state
+    chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/state
+    chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/type
 
   # Allow system to modify cpufreq control files
   chown root system /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
@@ -261,19 +202,6 @@ on boot
   # Set keypad delays to recommended values.
   write /sys/devices/platform/s3c-keypad/column_delay 35
   write /sys/devices/platform/s3c-keypad/timer_delay  5
-
-# Samsung USB Mode : system properties are linked with sysfs
-# write /sys/class/sec/switch/UsbMenuSel 0
-on property:persist.service.usb.setting=0
-  write /sys/devices/platform/android_usb/UsbMenuSel 0
-on property:persist.service.usb.setting=1
-  write /sys/devices/platform/android_usb/UsbMenuSel 1
-on property:persist.service.usb.setting=2
-  write /sys/devices/platform/android_usb/UsbMenuSel 2
-on property:persist.service.usb.setting=3
-  write /sys/devices/platform/android_usb/UsbMenuSel 3
-on property:persist.service.usb.setting=4
-  write /sys/devices/platform/android_usb/UsbMenuSel 4
 
 on property:persist.service.slate_mode=1
   write /sys/class/power_supply/battery/slate_test_mode 1
@@ -318,7 +246,7 @@ service victory-rild /system/bin/rild
   socket rild stream 660 root radio
   socket rild-debug stream 660 radio system
   user root
-  group radio cache inet misc audio sdcard_rw log
+  group radio cache inet misc audio log
 
 # 3D init
 service pvrsrvinit /system/vendor/bin/pvrsrvinit
@@ -356,12 +284,6 @@ service pppd_cdma /system/bin/pppd_runner
 service bdaddr /system/bin/bdaddr_read
     class main
     user root
-    disabled
-    oneshot
-
-# for Broadcom Bluetooth
-service iprenew_bnep0 /system/bin/dhcpcd -n
-    class main
     disabled
     oneshot
 
