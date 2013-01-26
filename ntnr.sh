@@ -6,7 +6,7 @@ fi
 
 DEFCONFIG_STRING=cyanogenmod_epicmtd-ntnr_defconfig
 PRJROOT=$PWD
-CUSTOMVERSION=nitest_ns4g-`date +%m%d`
+CUSTOMVERSION=nitest_ns4g-JB42-`date +%m%d`
 KERNEL_BUILD_DIR=/media/DATA2/NitestGit/android_kernel_samsung_epicmtd
 BOOTIMG_BUILD_DIR=$PRJROOT/create_boot.img
 ZIP_BUILD_DIR=$PRJROOT/zip-nr
