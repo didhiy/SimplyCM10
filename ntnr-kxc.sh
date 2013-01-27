@@ -6,7 +6,7 @@ fi
 
 DEFCONFIG_STRING=cyanogenmod_epicmtd-ntnr_defconfig
 PRJROOT=$PWD
-CUSTOMVERSION=nitest_ns4g-`date +%m%d`
+CUSTOMVERSION=nitest_ns4g-CM10-`date +%m%d`
 KERNEL_BUILD_DIR=/media/DATA2/NitestGit/android_kernel_samsung_epicmtd
 KEXEC_BUILD_DIR=$PRJROOT/kxc-zip
 DATE_START=$(date +"%s")
