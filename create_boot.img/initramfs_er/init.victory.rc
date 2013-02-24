@@ -106,6 +106,28 @@ on boot
   chown radio system /sys/class/sec/fg_atcom_test/set_fuel_gauage_read
   chown radio system /sys/class/sec/fg_atcom_test/set_fuel_gauage_reset
 
+  # Change ownerships for battery
+  chown radio system /sys/class/power_supply/battery/batt_vol
+  chown radio system /sys/class/power_supply/battery/batt_vol_adc
+  chown radio system /sys/class/power_supply/battery/batt_temp
+  chown radio system /sys/class/power_supply/battery/batt_temp_adc
+  chown radio system /sys/class/power_supply/battery/charging_source
+  chown radio system /sys/class/power_supply/battery/fg_soc
+  chown radio system /sys/class/power_supply/battery/reset_soc
+  chown radio system /sys/class/power_supply/battery/charging_mode_booting
+  chown radio system /sys/class/power_supply/battery/batt_temp_check
+  chown radio system /sys/class/power_supply/battery/batt_full_check
+  chown radio system /sys/class/power_supply/battery/batt_type
+  chown radio system /sys/class/power_supply/battery/batt_use
+  chown radio radio /sys/class/power_supply/battery/call
+  chown radio radio /sys/class/power_supply/battery/video
+  chown radio radio /sys/class/power_supply/battery/music
+  chown radio radio /sys/class/power_supply/battery/browser
+  chown radio radio /sys/class/power_supply/battery/hotspot
+  chown radio radio /sys/class/power_supply/battery/camera
+  chown radio radio /sys/class/power_supply/battery/data_call
+  chown radio radio /sys/class/power_supply/battery/wimax
+
   # For jack control
   chown radio system /sys/class/jack/jack_selector/select_jack
 
