@@ -15,6 +15,9 @@ echo "Building kernel"
 		pushd $KERNEL_BUILD_DIR
 		START_TIME=`date +%s`
 		make $DEFCONFIG_STRING
+		echo "CONFIG_KEXEC=y" >> .config
+		echo "CONFIG_ATAGS_PROC=y" >> .config
+		echo "CONFIG_KEXEC_HARDBOOT=y" >> .config
 		make -j$CPU_JOB_NUM
 		END_TIME=`date +%s`
 		let "ELAPSED_TIME=$END_TIME-$START_TIME"
