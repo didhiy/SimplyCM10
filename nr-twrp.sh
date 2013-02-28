@@ -4,12 +4,12 @@ if [ "$CPU_JOB_NUM" = "" ] ; then
 	CPU_JOB_NUM=`grep -c processor /proc/cpuinfo`
 fi
 
-DEFCONFIG_STRING=cyanogenmod_epicmtd-nter_defconfig
+DEFCONFIG_STRING=cyanogenmod_epicmtd-ntnr_defconfig
 PRJROOT=$PWD
-CUSTOMVERSION=nitest-JB42-`date +%m%d`
+CUSTOMVERSION=nitest_ns4g-JB42-`date +%m%d`
 KERNEL_BUILD_DIR=/media/DATA2/NitestGit/android_kernel_samsung_epicmtd
 BOOTIMG_BUILD_DIR=$PRJROOT/create_boot.img
-ZIP_BUILD_DIR=$PRJROOT/zip-er
+ZIP_BUILD_DIR=$PRJROOT/zip-nr
 DATE_START=$(date +"%s")
 
 echo "Building kernel"
@@ -23,7 +23,7 @@ echo "Building kernel"
 echo "Making boot image"
 		cp arch/arm/boot/zImage $BOOTIMG_BUILD_DIR
 		pushd $BOOTIMG_BUILD_DIR
-		bash create_boot.img.sh er
+		bash create_boot.img.sh nr twrp
 echo "Making zip"
 		cp boot.img $ZIP_BUILD_DIR
 		pushd $ZIP_BUILD_DIR

@@ -23,7 +23,7 @@ echo "Building kernel"
 echo "Making boot image"
 		cp arch/arm/boot/zImage $BOOTIMG_BUILD_DIR
 		pushd $BOOTIMG_BUILD_DIR
-		bash create_boot.img.sh nr
+		bash create_boot.img.sh nr cwm
 echo "Making zip"
 		cp boot.img $ZIP_BUILD_DIR
 		pushd $ZIP_BUILD_DIR
