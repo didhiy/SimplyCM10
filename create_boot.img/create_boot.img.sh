@@ -9,14 +9,15 @@
 
 #defines
 KERNEL_PATH="$PWD/zImage"
-RECOVERY_INITRD="$PWD/initramfs_twrp"
 #default to er
 KERNEL_INITRD="$PWD/initramfs_er"
+#default to twrp
+RECOVERY_INITRD="$PWD/initramfs_twrp"
 
 #function
 function PACKAGE_BOOTIMG()
 {
-	if [ "$1" = "" ] || [ "$2" = "" ]  || [ "$3" = "" ] ; then
+	if [ "$1" = "" ] || [ "$2" = "" ] || [ "$3" = "" ] ; then
 		ERROR_MSG="Error: PACKAGE_BOOTIMG - Missing args!"
 		return 1
 	fi
@@ -55,6 +56,15 @@ elif [ "$1" = "nr" ]; then
 	KERNEL_INITRD="$PWD/initramfs_nr"
 else
 	echo "usage: $0 <er|nr>"
+	exit
+fi
+
+if [ "$2" = "twrp" ]; then
+	RECOVERY_INITRD="$PWD/initramfs_twrp"
+elif [ "$2" = "cwm" ]; then
+	RECOVERY_INITRD="$PWD/initramfs_cwm"
+else
+	echo "usage: $1 <twrp|cwm>"
 	exit
 fi
 
