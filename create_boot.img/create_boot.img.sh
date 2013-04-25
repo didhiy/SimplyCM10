@@ -54,8 +54,10 @@ if [ "$1" = "er" ]; then
 	KERNEL_INITRD="$PWD/initramfs_er"
 elif [ "$1" = "nr" ]; then
 	KERNEL_INITRD="$PWD/initramfs_nr"
+elif [ "$1" = "st" ]; then
+	KERNEL_INITRD="$PWD/initramfs_st"
 else
-	echo "usage: $0 <er|nr>"
+	echo "usage: $0 <er|nr|st>"
 	exit
 fi
 
