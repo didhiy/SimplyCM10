@@ -4,7 +4,7 @@ if [ "$CPU_JOB_NUM" = "" ] ; then
 	CPU_JOB_NUM=`grep -c processor /proc/cpuinfo`
 fi
 
-DEFCONFIG_STRING=cyanogenmod_epicmtd-nter_defconfig
+DEFCONFIG_STRING=cyanogenmod_epicmtd_er_defconfig
 PRJROOT=$PWD
 CUSTOMVERSION=nitest-jb42_er-`date +%m%d`
 KERNEL_BUILD_DIR=/media/DATA2/NitestGit/android_kernel_samsung_epicmtd
