@@ -14,12 +14,15 @@ DATE_START=$(date +"%s")
 
 echo "Building kernel"
 		pushd $KERNEL_BUILD_DIR
+		git am patch/0001-My-build-setup.patch
+		git am patch/0002-strip-debug-modules.patch
 		START_TIME=`date +%s`
 		make $DEFCONFIG_STRING
 		make -j$CPU_JOB_NUM
 		END_TIME=`date +%s`
 		let "ELAPSED_TIME=$END_TIME-$START_TIME"
 		echo "Total compile time is $ELAPSED_TIME seconds"
+		git reset --hard HEAD~2
 echo "Making boot image"
 		cp arch/arm/boot/zImage $BOOTIMG_BUILD_DIR
 		pushd $BOOTIMG_BUILD_DIR
