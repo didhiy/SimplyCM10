@@ -6,7 +6,7 @@ fi
 
 DEFCONFIG_STRING=cyanogenmod_epicmtd_defconfig
 PRJROOT=$PWD
-CUSTOMVERSION=notest-jb42-`date +%Y%m%d`
+CUSTOMVERSION=notest-epicmtd-kk44-`date +%Y%m%d`
 KERNEL_BUILD_DIR=/media/DATA2/NitestGit/android_kernel_samsung_epicmtd
 BOOTIMG_BUILD_DIR=$PRJROOT/create_boot.img
 ZIP_BUILD_DIR=$PRJROOT/zip-er
@@ -23,12 +23,11 @@ echo "Building kernel"
 echo "Making boot image"
 		cp arch/arm/boot/zImage $BOOTIMG_BUILD_DIR
 		pushd $BOOTIMG_BUILD_DIR
-		bash create_boot.img.sh st twrp
+		bash create_boot.img.sh st cwm
 echo "Making zip"
 		cp boot.img $ZIP_BUILD_DIR
 		pushd $ZIP_BUILD_DIR
-		rm -rf system
-		mkdir -p system/lib/modules
+		rm -f system/lib/modules/*.ko
 		find $KERNEL_BUILD_DIR -name '*.ko' -exec cp '{}' system/lib/modules/ \;
 		rm $PRJROOT/$CUSTOMVERSION.zip
 		zip -r $PRJROOT/$CUSTOMVERSION.zip ./*

@@ -1,7 +1,7 @@
 *~
 *.zip
 zip-er/boot.img
-zip-er/system
+zip-er/system/lib/modules/*.ko
 zip-nr/boot.img
 zip-nr/system
 kxc-zip/zImage
