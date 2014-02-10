@@ -1,8 +1,8 @@
 ui_print("=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]");
 ui_print("------------------------------------------------");
-ui_print("          Installing Notest Kernel...           ");
-ui_print("          For KitKat 4.4 CM-11 epicmtd          ");
-ui_print("=]                                            =]");
+ui_print("          Installing Nitest Kernel...           ");
+ui_print("           For Official CM10 Nightly            ");
+ui_print("   Crespo4G modem patch from bbelos & xboxfan   ");
 ui_print("=]        with LED Fun by Nubecoder           =]");
 ui_print("=]                                            =]");
 ui_print("=]                                            =]");
@@ -39,9 +39,9 @@ assert(package_extract_file("boot.img", "/tmp/boot.img"),
 show_progress(0.100000, 0);
 run_program("/tmp/led_fun.sh", "stop");
 unmount("/system");
-ui_print("=]                                            =]");
-ui_print("=]                                            =]");
-ui_print("=]                                            =]");
-ui_print("=]                                            =]");
-ui_print("=]                                            =]");
+ui_print("                                                ");
+ui_print("                                                ");
+ui_print("                                                ");
+ui_print("                                                ");
+ui_print("                                                ");
 ui_print("Done!                                           ");

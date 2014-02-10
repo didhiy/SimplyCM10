@@ -2,20 +2,54 @@ on early-init
     start ueventd
 
 on init
+    export PATH /sbin:/vendor/bin:/system/sbin:/system/bin:/system/xbin
+    export LD_LIBRARY_PATH /vendor/lib:/system/lib
+    export ANDROID_ROOT /system
+    export ANDROID_DATA /data
+    export EXTERNAL_STORAGE /sdcard
 
-sysclktz 0
+    symlink /system/etc /etc
 
+    mkdir /sdcard
+    mkdir /preload
+    mkdir /system
+    mkdir /data
+    mkdir /cache
+    mkdir /efs
+    mkdir /tmp
+    mkdir /dbdata
+
+    mkdir /mnt 0775 root root
+
+on fs
+    mount tmpfs tmpfs /tmp
+    mount yaffs2 mtd@system /system
 on boot
-    # set cpu governor to powersave while in charging mode
-    # write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor powersave
+
+    ifup lo
+    hostname localhost
+    domainname localdomain
 
     class_start default
 
-    chmod 775 /charger
+# make charger executable
+    chmod 755 /charger
 
-## Daemon processes to be run by init.
-##
 service ueventd /sbin/ueventd
     critical
 
-service battery_charger /charger
+service console /system/bin/sh
+    console
+
+# adbd is controlled by the persist.service.adb.enable system property
+service adbd /sbin/adbd
+    disabled
+
+on property:persist.service.adb.enable=1
+    start adbd
+
+on property:persist.service.adb.enable=0
+    stop adbd
+
+service charger /charger
+    user root
