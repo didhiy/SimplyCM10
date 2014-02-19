@@ -6,7 +6,7 @@ fi
 
 DEFCONFIG_STRING=cyanogenmod_epicmtd_defconfig
 PRJROOT=$PWD
-CUSTOMVERSION=notest-epicmtd-kk44-`date +%Y%m%d`
+CUSTOMVERSION=notest-epicmtd-kk44-`date +%Y%m%d`-cma
 KERNEL_BUILD_DIR=/media/DATA2/NitestGit/android_kernel_samsung_epicmtd
 BOOTIMG_BUILD_DIR=$PRJROOT/create_boot.img
 ZIP_BUILD_DIR=$PRJROOT/zip-er
