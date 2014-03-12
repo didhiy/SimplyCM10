@@ -314,6 +314,9 @@ on property:ril.cdma.data_state=0
 on property:ril.bt_macaddr=*
   start bdaddr
 
+# zRAM: only read one page at a time
+   write /proc/sys/vm/page-cluster 0
+
 on post-fs-data
   # Create data/gps for GPS daemon
   mkdir /data/gps 771 gps system
